@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Copo de Nieve de Koch</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="legend">
+        Raúl Ciriaco Castillo – 3701 ISIC
+      </div>      
+  <div class="container">
+    <h1>Copo de Nieve de Koch</h1>
+    <form id="kochForm">
+      <label for="depth">Profundidad:</label>
+      <input type="number" id="depth" name="depth" min="0" max="6" value="3">
+
+      <label for="half">¿Solo la mitad?</label>
+      <input type="checkbox" id="half" name="half">
+
+      <button type="submit">Generar</button>
+    </form>
+
+    <div class="image-container">
+      <img id="kochImage" src="" alt="Copo de nieve generado">
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("kochForm");
+    const image = document.getElementById("kochImage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const depth = document.getElementById("depth").value;
+      const half = document.getElementById("half").checked;
+      const url = `/koch?depth=${depth}&half=${half}`;
+      image.src = url + "&t=" + new Date().getTime(); // evitar caché
+    });
+  </script>
+</body>
+</html>
